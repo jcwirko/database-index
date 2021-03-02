@@ -15,6 +15,7 @@ class CreateProductsTable extends Migration
             $table->float('unit_price');
             $table->float('quantity');
             $table->float('total_cost');
+            $table->unsignedBigInteger('user_id');
 
             $table->timestamps();
         });
