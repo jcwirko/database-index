@@ -17,6 +17,7 @@ class Product extends Model
         'unit_price',
         'quantity',
         'total_cost',
+        'user_id'
     ];
 
     public function setTotalCostAttribute($value)

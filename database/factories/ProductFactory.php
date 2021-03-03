@@ -18,7 +18,7 @@ class ProductFactory extends Factory
             'unit_price' => $this->faker->randomFloat(2, 1, 200),
             'quantity' => $this->faker->randomDigit,
             'total_cost' => $this->faker->randomFloat(2, 1, 200),
-            'user_id' => User::factory()->create()->id
+            'user_id' => 'overridden'
         ];
     }
 }

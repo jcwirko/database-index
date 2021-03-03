@@ -7,6 +7,7 @@ services:
             dockerfile: Dockerfile
         volumes:
             - .:/var/www/html
+            - ./docker/memory.ini:/usr/local/etc/php/conf.d/memory.ini
         networks:
             - sentry
         depends_on:
