@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -67,5 +68,17 @@ class ProductController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    public function getProductsByUser(int $userId)
+    {
+        return Product::where('user_id', $userId)->get();
+    }
+
+    function microtime_float()
+    {
+        list($usec, $sec) = explode(" ", microtime());
+
+        return ((float)$usec + (float)$sec);
     }
 }

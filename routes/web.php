@@ -14,7 +14,5 @@ Route::get('home', [HomeController::class, 'index'])->name('home');
 //USER
 Route::resource('users', UserController::class);
 
-//USER
+//PRODUCTS
 Route::resource('products', ProductController::class);
-
-require __DIR__.'/auth.php';
