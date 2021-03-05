@@ -15,4 +15,5 @@ Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::resource('users', UserController::class);
 
 //PRODUCTS
+Route::get('products/{user_id}', [ProductController::class, 'getProductsByUser']);
 Route::resource('products', ProductController::class);

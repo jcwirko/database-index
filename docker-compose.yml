@@ -1,7 +1,7 @@
 version: '3'
 services:
-    sentry_php:
-        container_name: sentry-php
+    index_php:
+        container_name: index-php
         build:
             context: .
             dockerfile: Dockerfile
@@ -9,27 +9,27 @@ services:
             - .:/var/www/html
             - ./docker/memory.ini:/usr/local/etc/php/conf.d/memory.ini
         networks:
-            - sentry
+            - index
         depends_on:
-            - sentry_db
+            - index_db
 
-    sentry_nginx:
-      container_name: sentry-nginx
+    index_nginx:
+      container_name: index-nginx
       hostname: nginx
       image: nginx:1.19
       restart: unless-stopped
       depends_on:
-        - sentry_php
+        - index_php
       ports:
         - '${APP_PORT:-80}:80'
       volumes:
         - .:/var/www/html
         - ./docker/virtualhost.conf:/etc/nginx/conf.d/default.conf
       networks:
-        - sentry
+        - index
 
-    sentry_db:
-        container_name: sentry-db
+    index_db:
+        container_name: index-db
         image: 'mariadb:10.5.8'
         restart: always
         ports:
@@ -40,12 +40,12 @@ services:
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
         volumes:
-            - 'sentrymysql:/var/lib/mysql'
+            - 'indexmysql:/var/lib/mysql'
         networks:
-            - sentry
+            - index
 networks:
-    sentry:
+    index:
         driver: bridge
 volumes:
-    sentrymysql:
+    indexmysql:
         driver: local

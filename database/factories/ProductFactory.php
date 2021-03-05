@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
 {
@@ -13,11 +14,9 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->firstName,
+            'name' => $this->faker->uuid.$this->faker->uuid.Str::random(16),
             'description' => $this->faker->text(30),
-            'unit_price' => $this->faker->randomFloat(2, 1, 200),
-            'quantity' => $this->faker->randomDigit,
-            'total_cost' => $this->faker->randomFloat(2, 1, 200),
+            'brand' => 'overridden',
             'user_id' => 'overridden'
         ];
     }

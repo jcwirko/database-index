@@ -10,12 +10,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function(Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->string('brand');
             $table->text('description');
-            $table->float('unit_price');
-            $table->float('quantity');
-            $table->float('total_cost');
             $table->unsignedBigInteger('user_id');
+
+            //$table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
         });
